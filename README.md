@@ -2,13 +2,27 @@
 
 Jobby App is a **React-based job search application** that allows users to authenticate, browse jobs, apply filters, view job details, and explore similar jobs.  
 This project demonstrates real-world React concepts such as authentication, protected routes, API integration, loaders, failure views, and dynamic filtering.
+This project extends the existing functionality by adding **location-based filtering**, **sticky UI elements**, and improved user experience, while ensuring all existing and new test cases pass successfully.
 
 ---
 
-## 🚀 Project Overview
+## 🚀 Live Demo
 
-In this project, we build **Jobby App** by applying all the concepts learned so far in the React course.  
-The application fetches data from APIs, handles authentication using JWT tokens, and provides a smooth job-search experience.
+🔗 **Deployed URL**: https://<YOUR-VERCEL-URL>.vercel.app  
+🔗 **GitHub Repository**: https://github.com/Elkari-PremSagar/Jobby-App.git
+
+---
+
+## 📌 Project Overview
+
+The Jobby App allows users to:
+- Log in securely
+- Browse job listings
+- Apply filters to find relevant jobs
+- View detailed job information
+- Handle loading and failure states gracefully
+
+This **enhancement project** builds on top of the existing Jobby App by introducing **new filtering functionality and UI improvements**, following clean code principles.
 
 ---
 
@@ -55,6 +69,16 @@ The application fetches data from APIs, handles authentication using JWT tokens,
 - **Styling:** CSS / Styled Components
 - **Icons:** React Icons
 - **Loader:** react-loader-spinner
+- **CSS3**
+- **JavaScript (ES6+)**
+- **REST APIs**
+---
+
+## 🔐 Authentication
+
+- JWT-based authentication
+- Token stored using `js-cookie`
+- Protected routes redirect unauthenticated users to Login page
 
 ---
 
@@ -100,9 +124,9 @@ The application fetches data from APIs, handles authentication using JWT tokens,
 
 ---
 
-## ⚙️ Setup Instructions
+## 📂 Project Setup
 
-1️⃣ Clone the repository:
 ```bash
-git clone <repository-url>
+npm install
+npm start
 
