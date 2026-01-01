@@ -1,0 +1,49 @@
+/* Container for all filters */
+.filters-container {
+  background-color: #0f0f0f; /* Dark sidebar */
+  padding: 16px;
+  border-radius: 8px;
+  position: sticky; /* ⭐ Sticky sidebar */
+  top: 90px; /* Below header */
+  height: fit-content;
+}
+
+/* Each filter section (Employment / Salary / Location) */
+.filter-section {
+  margin-bottom: 16px;
+}
+
+/* Heading for each filter */
+.filter-heading {
+  color: #f1f5f9;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* List of checkboxes or radio buttons */
+.filters-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+/* Each filter item */
+.filter-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* Label text */
+.filter-item label {
+  color: #f8fafc;
+  font-size: 14px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+/* Horizontal rule between filters */
+hr {
+  border: 0.5px solid #334155;
+  margin: 12px 0;
+}

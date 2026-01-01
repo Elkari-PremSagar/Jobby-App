@@ -17,6 +17,14 @@ const apiStatusConstants = {
   failure: 'FAILURE',
 }
 
+const locationsList = [
+  {label: 'Hyderabad', locationId: 'HYDERABAD'},
+  {label: 'Bangalore', locationId: 'BANGALORE'},
+  {label: 'Chennai', locationId: 'CHENNAI'},
+  {label: 'Delhi', locationId: 'DELHI'},
+  {label: 'Mumbai', locationId: 'MUMBAI'},
+]
+
 class Jobs extends Component {
   state = {
     jobsList: [],
@@ -24,6 +32,7 @@ class Jobs extends Component {
     seacrhInput: '',
     activeEmploymentTypes: [],
     activeSalaryRange: '',
+    activeLocations: [],
     profileStatus: apiStatusConstants.initial,
     jobsStatus: apiStatusConstants.initial,
   }
@@ -64,8 +73,14 @@ class Jobs extends Component {
 
   fetchJobs = async () => {
     this.setState({jobsStatus: apiStatusConstants.inProgress})
-    const {activeEmploymentTypes, activeSalaryRange, seacrhInput} = this.state
+    const {
+      activeEmploymentTypes,
+      activeSalaryRange,
+      seacrhInput,
+      activeLocations,
+    } = this.state
     const employmentQuery = activeEmploymentTypes.join(',')
+    const locationQuery = activeLocations.join(',')
     const jwtToken = Cookies.get('jwt_token')
     const url = `https://apis.ccbp.in/jobs?employment_type=${employmentQuery}&minimum_package=${activeSalaryRange}&search=${seacrhInput}`
     const options = {
@@ -77,7 +92,14 @@ class Jobs extends Component {
     const response = await fetch(url, options)
     if (response.ok) {
       const data = await response.json()
-      const updatedJobs = data.jobs.map(job => ({
+      const filteredJobs =
+        activeLocations.length === 0
+          ? data.jobs
+          : data.jobs.filter(job =>
+              activeLocations.includes(job.location.toUpperCase()),
+            )
+
+      const updatedJobs = filteredJobs.map(job => ({
         companyLogoUrl: job.company_logo_url,
         employmentType: job.employment_type,
         id: job.id,
@@ -87,6 +109,7 @@ class Jobs extends Component {
         rating: job.rating,
         title: job.title,
       }))
+
       this.setState({
         jobsList: updatedJobs,
         jobsStatus: apiStatusConstants.success,
@@ -128,6 +151,16 @@ class Jobs extends Component {
 
   updateSalaryRange = salaryId => {
     this.setState({activeSalaryRange: salaryId}, this.fetchJobs)
+  }
+
+  updateLocation = locationId => {
+    this.setState(prevState => {
+      const isSelected = prevState.activeLocations.includes(locationId)
+      const updatedList = isSelected
+        ? prevState.activeLocations.filter(id => id !== locationId)
+        : [...prevState.activeLocations, locationId]
+      return {activeLocations: updatedList}
+    }, this.fetchJobs)
   }
 
   renderLoader = () => (
@@ -199,6 +232,8 @@ class Jobs extends Component {
             <JobsFilterGroup
               onChangeEmployment={this.updateEmploymantType}
               onChangeSalary={this.updateSalaryRange}
+              onChangeLocation={this.updateLocation}
+              locationsList={locationsList}
             />
             <div className="jobs-section">
               <div className="seacrh-input-container">

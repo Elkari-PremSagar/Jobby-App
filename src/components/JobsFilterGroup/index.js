@@ -50,6 +50,11 @@ class JobsFilterGroup extends Component {
     onChangeSalary(event.target.value)
   }
 
+  onChangeLocation = event => {
+    const {onChangeLocation} = this.props
+    onChangeLocation(event.target.value)
+  }
+
   renderEmploymentFilters = () => (
     <div>
       <h1>Type of Employment</h1>
@@ -89,12 +94,36 @@ class JobsFilterGroup extends Component {
     </div>
   )
 
+  renderLocationFilters = () => {
+    const {locationsList} = this.props
+    return (
+      <div className="filter-section">
+        <h1 className="filter-heading">Location</h1>
+        <ul className="filters-list">
+          {locationsList.map(each => (
+            <li key={each.locationId} className="filter-item">
+              <input
+                type="checkbox"
+                id={each.locationId}
+                value={each.locationId}
+                onChange={this.onChangeLocation}
+              />
+              <label htmlFor={each.locationId}>{each.label}</label>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
   render() {
     return (
       <div>
         {this.renderEmploymentFilters()}
         <hr />
         {this.renderSalaryFilters()}
+        <hr />
+        {this.renderLocationFilters()}
       </div>
     )
   }
