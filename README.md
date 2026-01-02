@@ -8,7 +8,7 @@ This project extends the existing functionality by adding **location-based filte
 
 ## 🚀 Live Demo
 
-🔗 **Deployed URL**: https://<YOUR-VERCEL-URL>.vercel.app  
+🔗 **Deployed URL**:🔗 https://jobby-app-mu-gold.vercel.app  
 🔗 **GitHub Repository**: https://github.com/Elkari-PremSagar/Jobby-App.git
 
 ---
