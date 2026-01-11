@@ -9,7 +9,7 @@ This project extends the existing functionality by adding **location-based filte
 ## 🚀 Live Demo
 
 🔗 **Deployed URL**:🔗 https://jobby-app-mu-gold.vercel.app  
-                    🔗 https://appjobbyp.ccbp.tech/
+   **               🔗 https://appjobbyp.ccbp.tech/
 🔗 **GitHub Repository**: https://github.com/Elkari-PremSagar/Jobby-App.git
 
 ---
